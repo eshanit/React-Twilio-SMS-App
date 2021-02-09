@@ -167,34 +167,47 @@ const List = ({people}) => {
     ///
     
     const [showModal, setShowModal] = React.useState(false);
-    const [number, setNumber] = useState("");
-    const [body, setBody] = useState("");
+    // const [number, setNumber] = useState("");
+    // const [body, setBody] = useState("");
+
+    const [messageSet, setMessageSet] = useState({
+        message:''
+    })
 
     const handleChange =(e)=>{
-        setBody(e.target.value)
-        setNumber(e.target.value)
+        const name  = e.target.name
+        const value = e.target.value
+
+        setMessageSet({...messageSet,[name]:value})
+
+        console.log(name,value)
     }
 
-    const onSubmit = async (e) => {
+    const handleSubmit = async (e) => {
         await e.preventDefault();
+
+        const phone = document.getElementById("phoneNumber").value;
 
         const res = await fetch("/api/sendMessage", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({phone:number, sms: body})
+            body: JSON.stringify({
+                to: phone,
+                body: messageSet.message
+            })
         });
 
     const data = await res.json();
 
     if (data.success){
-        await setBody("");
-        await setShowModal(false);
+        // await setBody("");
+        // await setShowModal(false);
 
     }else{
 
-        await setBody("An Error has occurred.");
+        // await setBody("An Error has occurred.");
 
     }
 
@@ -214,11 +227,11 @@ const List = ({people}) => {
                                         <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Gender</th>
                                         <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Email</th>
                                         <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Phone</th>
-                                        {/* <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Payment Date</th>
-                                        <th class="px-6 py-3 border-b-2 border-gray-300"></th> */}
+                                        {/* <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Payment Date</th>
+                                        <th className="px-6 py-3 border-b-2 border-gray-300"></th> */}
                                     </tr>
                                 </thead>
-                                <tbody class="bg-white">
+                                <tbody className="bg-white">
                                 {people.map((person) => {
                                         const {id, firstName, lastName, gender , phone, email} = person
 
@@ -239,7 +252,7 @@ const List = ({people}) => {
                                                                 <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">
                                                                     <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                                                                     <span aria-hidden className="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                                                    <span class="relative text-xs">{gender}</span>
+                                                                    <span className="relative text-xs">{gender}</span>
                                                                 </span>
                                                                 </td>
                                                                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">{email}</td>
@@ -277,24 +290,24 @@ const List = ({people}) => {
                                                                                 </div>
                                                                                 {/*body*/}
                                                                                 <form>
-                                                                                    <label className="block" htmlFor="phone">
+                                                                                    <label className="block" htmlFor="phoneNumber">
                                                                                         <span className="text-gray-700 text-sm font-bold"></span>
                                                                                         <input
-                                                                                            id="phone"
-                                                                                            name="phone"
+                                                                                            id="phoneNumber"
+                                                                                            name="phoneNumber"
                                                                                             value={phone}
-                                                                                            onChange={handleChange}
+                                                                                            //onChange={handleChange}
                                                                                             type="hidden"
                                                                                             className="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
                                                                                         />
                                                                                     </label>
                                                                                     <div className="relative p-6 flex-auto">
-                                                                                    <label className="block" htmlFor="sms">
+                                                                                    <label className="block" htmlFor="message">
                                                                                         <span className="text-gray-700 text-sm font-bold">SMS</span>
                                                                                             <textarea
-                                                                                                name="sms"
-                                                                                                id="sms"
-                                                                                                value ={body}
+                                                                                                name="message"
+                                                                                                id="message"
+                                                                                                value ={messageSet.message}
                                                                                                 onChange={handleChange}
                                                                                                 type="text"
                                                                                                 className="mt-1 block form-input w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
@@ -310,7 +323,7 @@ const List = ({people}) => {
                                                                                         className="bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                                                                                         type="submit"
                                                                                         style={{ transition: "all .15s ease" }}
-                                                                                        onClick={onSubmit}
+                                                                                        onClick={handleSubmit}
                                                                                     >
                                                                                         Send SMS
                                                                                     </button>
