@@ -188,7 +188,8 @@ const List = ({people}) => {
 
         const phone = document.getElementById("phoneNumber").value;
 
-        const res = await fetch("/api/sendMessage", {
+
+        const res = await fetch("/api/HelloWorld", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -200,14 +201,16 @@ const List = ({people}) => {
         });
 
     const data = await res.json();
+    //setShowModal(false);
+console.log(data.success)
 
     if (data.success){
-        // await setBody("");
-        // await setShowModal(false);
+        await setMessageSet("");
+        await setShowModal(false);
 
     }else{
 
-        // await setBody("An Error has occurred.");
+        await setMessageSet("An Error has occurred.");
 
     }
 
