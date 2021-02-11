@@ -52,103 +52,103 @@ const Form = () => {
 
     return ( 
         <>
-        <div className="w-full flex justify-center">
-        <div className="p-4 flex justify-between items-center w-1/2">
-        <div className="items-center w-full">
-            <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-                <div className="relative py-3 sm:max-w-xl sm:mx-auto w-screen">
-                    <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-                        <div className="max-w-md mx-auto w-full">
-                            <form className="form-horizontal" >
-                                    <div className="divide-y divide-gray-200">
-                                        <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                                            <label className="block" htmlFor="firstName">
-                                                    <span className="text-gray-700 text-sm font-bold">First Name</span>
-                                                    <input
-                                                        name="firstName"
-                                                        id="firstName"
-                                                        value={person.firstName}
-                                                        onChange={handleChange}
-                                                        type="text"
-                                                        className="mt-1 form-input block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+        <div className="w-full md:flex justify-center">
+            <div className="p-4 justify-between items-center w-1/2">
+                <div className="items-center w-full">
+                    <div className="min-h-screen bg-gray-100 py-6 md:flex flex-col justify-center sm:py-12">
+                        <div className="relative py-3 sm:max-w-xl sm:mx-auto w-screen">
+                            <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+                                <div className="max-w-md mx-auto w-full">
+                                    <form className="form-horizontal" >
+                                            <div className="divide-y divide-gray-200">
+                                                <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                                                    <label className="block" htmlFor="firstName">
+                                                            <span className="text-gray-700 text-sm font-bold">First Name</span>
+                                                            <input
+                                                                name="firstName"
+                                                                id="firstName"
+                                                                value={person.firstName}
+                                                                onChange={handleChange}
+                                                                type="text"
+                                                                className="mt-1 form-input block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                                                                />
+                                                    </label>
+                                                    <label className="block" htmlFor="lastName">
+                                                            <span className="text-gray-700 text-sm font-bold">Last Name</span>
+                                                            <input
+                                                                name="lastName"
+                                                                id="lastName"
+                                                                value={person.lastName}
+                                                                onChange={handleChange}
+                                                                type="text"
+                                                                className="mt-1 block form-input w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                                                                />
+                                                    </label>
+                                                    <label className="block" htmlFor="gender">
+                                                        <span className="text-gray-700 text-sm font-bold">Gender</span>
+                                                        <select
+                                                            id="gender" 
+                                                            name="gender"
+                                                            value={person.gender}
+                                                            onChange={handleChange}
+                                                            className="block form-select w-full mt-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                                                            >
+                                                            <option>--Choose Gender--</option>
+                                                            <option value='Male'>Male</option>
+                                                            <option value='Female'>Female</option>
+                                                        </select>       
+                                                    </label>
+                                                    <label className="block" htmlFor="paymentDate">
+                                                        <span className="text-gray-700 text-sm font-bold">Date of Payment</span>
+                                                        <input
+                                                            id="paymentDate"
+                                                            name="paymentDate"
+                                                            value={person.paymentDate}
+                                                            onChange={handleChange}
+                                                            type="date"
+                                                            className="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
                                                         />
-                                            </label>
-                                            <label className="block" htmlFor="lastName">
-                                                    <span className="text-gray-700 text-sm font-bold">Last Name</span>
-                                                    <input
-                                                        name="lastName"
-                                                        id="lastName"
-                                                        value={person.lastName}
-                                                        onChange={handleChange}
-                                                        type="text"
-                                                        className="mt-1 block form-input w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
-                                                        />
-                                            </label>
-                                            <label className="block" htmlFor="gender">
-                                                <span className="text-gray-700 text-sm font-bold">Gender</span>
-                                                <select
-                                                    id="gender" 
-                                                    name="gender"
-                                                    value={person.gender}
-                                                    onChange={handleChange}
-                                                    className="block form-select w-full mt-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
-                                                    >
-                                                    <option>--Choose Gender--</option>
-                                                    <option value='Male'>Male</option>
-                                                    <option value='Female'>Female</option>
-                                                </select>       
-                                            </label>
-                                            <label className="block" htmlFor="paymentDate">
-                                                <span className="text-gray-700 text-sm font-bold">Date of Payment</span>
-                                                <input
-                                                    id="paymentDate"
-                                                    name="paymentDate"
-                                                    value={person.paymentDate}
-                                                    onChange={handleChange}
-                                                    type="date"
-                                                    className="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
-                                                />
-                                            </label>
-                                            <label className="block" htmlFor="phone">
-                                                <span className="text-coolGray-800 text-sm font-bold">Phone</span>
-                                                <input
-                                                    id ="phone"
-                                                    name="phone"
-                                                    value={person.phone}
-                                                    onChange={handleChange}
-                                                    type="number"
-                                                    className="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
-                                                    placeholder=""
-                                                    />
-                                            </label>
-                                            <label className="block" htmlFor="email">
-                                                <span className="text-coolGray-800 text-sm font-bold">Email</span>
-                                                <input
-                                                    id = "email"
-                                                    name="email"
-                                                    value={person.email}
-                                                    onChange={handleChange}
-                                                    className="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
-                                                    placeholder=""
-                                                    />
-                                            </label>
-                                        </div>
-                                        <div className="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
-                                            <button 
-                                                type="submit" 
-                                                onClick = {handleSubmit}
-                                                className="w-3/4 inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
-                                                Submit
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>            
+                                                    </label>
+                                                    <label className="block" htmlFor="phone">
+                                                        <span className="text-coolGray-800 text-sm font-bold">Phone</span>
+                                                        <input
+                                                            id ="phone"
+                                                            name="phone"
+                                                            value={person.phone}
+                                                            onChange={handleChange}
+                                                            type="number"
+                                                            className="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                                                            placeholder=""
+                                                            />
+                                                    </label>
+                                                    <label className="block" htmlFor="email">
+                                                        <span className="text-coolGray-800 text-sm font-bold">Email</span>
+                                                        <input
+                                                            id = "email"
+                                                            name="email"
+                                                            value={person.email}
+                                                            onChange={handleChange}
+                                                            className="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                                                            placeholder=""
+                                                            />
+                                                    </label>
+                                                </div>
+                                                <div className="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
+                                                    <button 
+                                                        type="submit" 
+                                                        onClick = {handleSubmit}
+                                                        className="w-3/4 inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>            
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
         <div className="items-center w-1/2">
             <List people={people} />
         </div>  
@@ -224,7 +224,6 @@ console.log(data.success)
                                 <table className="py-20">
                                 <thead>
                                     <tr>
-                                        <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">ID</th>
                                         <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Name</th>
                                         <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Surname</th>
                                         <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Gender</th>
@@ -243,13 +242,6 @@ console.log(data.success)
 
 
                                                             <tr key={id}>
-                                                                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                                                                    <div className="flex items-center">
-                                                                        <div>
-                                                                            <div className="text-sm leading-5 text-gray-800">#1</div>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
                                                                 <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">{firstName}</td>
                                                                 <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">{lastName}</td>
                                                                 <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">
