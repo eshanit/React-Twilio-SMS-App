@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 
-const Modal = ({personData}) => {
+const SendSMSModal = ({personData}) => {
 
     const {firstName, lastName, phone, setShowModal} = personData
     
@@ -131,6 +131,4 @@ return (
 
 }
 
-
-
-export default Modal
+export default SendSMSModal

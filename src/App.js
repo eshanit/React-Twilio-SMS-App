@@ -1,11 +1,11 @@
-import Form from './components/Form'
+import RegisterPersonForm from './components/RegisterPersonForm'
 
 function App() {
   return (
   <>
  
         <div className="">
-          <Form />
+          <RegisterPersonForm />
         </div>
 
   </>

@@ -1,7 +1,18 @@
-import React, {useState} from 'react'
-import List from './List'
+import React, {useState, useReducer} from 'react'
+import RegisteredPeopleList from './RegisteredPeopleList'
+import PersonAddedModal from './modals/PersonAddedModal'
+import {reducer} from './reducer/Reducer'
+import {PersonContext} from './context/PersonContext'
 
-const Form = () => {
+const defaultState = {
+    people:[],
+    isPersonAddedModalOpen: false,
+    isMessageSent:false,
+}
+
+
+
+const RegisterPersonForm = () => {
 
     //create form with inputs 
 
@@ -14,11 +25,14 @@ const Form = () => {
         email: ''
     }
 
+    //define people state
+    const [people, setPeople] = useState([])
+
     //define person state
     const [person, setPerson] = useState(defaultFormInputValues)
 
-    // define people state
-    const [people, setPeople] = useState([])
+
+    const [state, dispatch] = useReducer(reducer, defaultState)
 
     //handleChange event
 
@@ -40,20 +54,72 @@ const Form = () => {
 
         if( person.firstName && person.lastName && person.gender && person.paymentDate && person.phone && person.email)
         {
-            //add id for key to person (assuming email is unique)
+           //add id for key to person (assuming email is unique)
             const newPerson = {...person, id: person.email}
 
-            setPeople([...people, newPerson])
+            dispatch({
+                        type: 'ADD_PERSON',
+                        payload: newPerson
+                    })
+
+       
+            setPeople([])
 
             //set person state back to default values 
             setPerson(defaultFormInputValues)
+
+        }else{
+
+            dispatch(
+                {
+                    type: 'MISSING_INPUT_VALUES'
+                }
+            )
+
         }
 
     }
 
+    //
+
+    const closeModal = () => {
+
+        dispatch({
+            type: 'CLOSE_MODAL'
+        })
+
+    }
+
+    //
+
+    const removePerson = (id) => {
+     
+        dispatch({
+            type: 'REMOVE_PERSON',
+            payload:id
+        })
+
+        console.log(id)
+
+      };
+
+
+    //
+
 
     return ( 
         <>
+        {/* Start Modal */}
+
+        {state.isPersonAddedModalOpen && <PersonAddedModal 
+                                            closeModal = {closeModal} 
+                                            modalContent = {state.modalContent}
+                                            modalHeader  = {state.modalHeader}
+                                            modalTextColor = {state.modalHeaderTextColor}
+                                            />} 
+
+        {/* End Modal */}
+        <PersonContext.Provider value={{removePerson}}>
         <div className="w-full md:flex justify-center">
             <div className="p-4 justify-between items-center w-1/2">
                 <div className="items-center w-full">
@@ -152,9 +218,10 @@ const Form = () => {
                 </div>
             </div>
         <div className="items-center w-1/2">
-            <List people={people} />
+            <RegisteredPeopleList people={state.people}/>
         </div>  
     </div>
+    </PersonContext.Provider>
         </>
 
 
@@ -162,4 +229,4 @@ const Form = () => {
 };
 
 
-export default Form
+export default RegisterPersonForm
